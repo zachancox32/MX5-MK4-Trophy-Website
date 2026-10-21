@@ -66,12 +66,11 @@ permalink: /index.html
   <!-- ========================================================== ticker -->
   <div class="ticker" aria-hidden="true">
     <div class="ticker__track" data-ticker>
-      <span>MX-5 Mk4 Trophy</span><span>&frasl;</span>
-      <span>The next generation of MX-5 racing</span><span>&frasl;</span>
-      <span>Racing with the BRSCC</span><span>&frasl;</span>
-      <span>MX-5 Mk4 Trophy</span><span>&frasl;</span>
-      <span>The next generation of MX-5 racing</span><span>&frasl;</span>
-      <span>Racing with the BRSCC</span><span>&frasl;</span>
+      {%- for pass in [1, 2] -%}
+        {%- for item in car.ticker -%}
+          <span>{{ item }}</span><span>&frasl;</span>
+        {%- endfor -%}
+      {%- endfor -%}
     </div>
   </div>
 
@@ -167,12 +166,9 @@ permalink: /index.html
           <p style="color:var(--grit-2);margin:0 0 16px;max-width:46ch">ABS, traction control and a ZF sequential gearbox are part of that specification. The car is modern rather than raw, so a missed downshift does not end your afternoon. That makes it a realistic first car for a driver straight out of an ARDS test, and still quick enough to be worth the time of someone who has raced for years.</p>
           <p class="note">For 2027 the Trophy runs on the BRSCC MX-5 SuperCup grid, scored as its own championship. You share the track with the SuperCup Mk3 cars, but not the championship. Different car, different tyre, your own results and your own title. From 2028 the Trophy takes its own slot on the BRSCC roster.</p>
           <ul class="spec">
-            <li><span class="k">Chassis</span><span class="v">Mazda MX-5 Mk4, ND</span></li>
-            <li><span class="k">Engine</span><span class="v">Sealed</span></li>
-            <li><span class="k">Gearbox</span><span class="v">ZF sequential</span></li>
-            <li><span class="k">Driver aids</span><span class="v">ABS and traction control</span></li>
-            <li><span class="k">Tyres</span><span class="v">Goodyear hard compound slick and wet</span></li>
-            <li><span class="k">Allocation</span><span class="v">Six sets of slicks per season</span></li>
+            {% for row in car.spec %}
+            <li><span class="k">{{ row.k }}</span><span class="v">{{ row.v }}</span></li>
+            {% endfor %}
           </ul>
         </div>
         {# When a photo exists, replace the block below with:

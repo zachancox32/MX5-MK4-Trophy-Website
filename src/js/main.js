@@ -126,26 +126,8 @@
         : 'Season opens soon';
     }
 
-    /* ---------------------------------------------------------- ticker */
-    var track = document.querySelector('[data-ticker]');
-    if (track && nextRow) {
-      var bits = [
-        'Round ' + nextRow.getAttribute('data-round') + ' · ' +
-          nextRow.querySelector('.cal__ct').textContent,
-        formatSpan(parseISO(nextRow.getAttribute('data-start')),
-                   parseISO(nextRow.getAttribute('data-end') ||
-                            nextRow.getAttribute('data-start'))),
-        'MX-5 Mk4 Trophy'
-      ];
-      var html = '';
-      // twice through, so the -50% keyframe loops seamlessly
-      for (var pass = 0; pass < 2; pass++) {
-        bits.forEach(function (b) {
-          html += '<span>' + b + '</span><span>⁄</span>';
-        });
-      }
-      track.innerHTML = html;
-    }
+    /* The ticker carries the car specification, set in the template from
+       car.js, so nothing here rewrites it. */
   }
 
   function formatSpan(start, end) {
