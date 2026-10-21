@@ -1,0 +1,13 @@
+{#
+  Generated artwork for posts with no photograph.
+  The headline is already in the card as real text, so this is decorative
+  and hidden from screen readers rather than read out twice.
+  size: sm (grid cards) | lg (lead story) | hero (article page)
+#}
+{% macro art(title, category, size="sm") %}
+<span class="cardart cardart--{{ size }}" data-cat="{{ category | default('News') }}" aria-hidden="true">
+  <span class="cardart__cat">{{ category | default('News') }}</span>
+  <span class="cardart__title">{{ title }}</span>
+  <span class="cardart__rule"></span>
+</span>
+{% endmacro %}

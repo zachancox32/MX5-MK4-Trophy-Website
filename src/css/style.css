@@ -640,43 +640,43 @@ a.ptile:hover{border-color:rgba(13,12,15,.34)}
 .teamsintro{color:#A8A89E;max-width:58ch;margin:14px 0 0;font-size:16.5px}
 
 .teams{display:flex;flex-direction:column;gap:1px;background:var(--concrete-line)}
-.team{
+.teams .team{
   display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:start;
   background:var(--concrete);padding:28px 0;
 }
-.team__logo{
+.teams .team__logo{
   display:flex;align-items:center;justify-content:center;
   background:var(--white);border:1px solid rgba(13,12,15,.12);
   min-height:110px;padding:18px;
 }
-.team__logo img{max-width:84%;max-height:62px;width:auto;height:auto;object-fit:contain}
-.team__mark{
+.teams .team__logo img{max-width:84%;max-height:62px;width:auto;height:auto;object-fit:contain}
+.teams .team__mark{
   font-family:var(--data);font-weight:700;font-size:12px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--grit-2);text-align:center;line-height:1.4;
 }
-.team__name{font-size:clamp(22px,2.8vw,28px);margin:0 0 4px}
-.team__base{
+.teams .team__name{font-size:clamp(22px,2.8vw,28px);margin:0 0 4px}
+.teams .team__base{
   font-family:var(--data);font-size:13px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--grit-2);margin:0 0 14px;
 }
-.team__tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;padding:0}
-.team__tags li{
+.teams .team__tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;padding:0}
+.teams .team__tags li{
   font-family:var(--data);font-size:11px;font-weight:700;letter-spacing:.13em;
   text-transform:uppercase;padding:5px 10px;
   background:rgba(255,212,0,.22);color:#6B5200;
 }
-.team__blurb{color:var(--grit-2);margin:0 0 16px;max-width:60ch;font-size:15.5px}
-.team__contact{
+.teams .team__blurb{color:var(--grit-2);margin:0 0 16px;max-width:60ch;font-size:15.5px}
+.teams .team__contact{
   list-style:none;display:flex;flex-wrap:wrap;gap:10px 22px;margin:0;padding:0;
   font-family:var(--data);font-size:14px;letter-spacing:.05em;
 }
-.team__contact a{color:var(--red-ink);text-decoration:underline}
-.team__contact a:hover{color:var(--tarmac)}
-.team__nocontact{color:var(--grit-2)}
+.teams .team__contact a{color:var(--red-ink);text-decoration:underline}
+.teams .team__contact a:hover{color:var(--tarmac)}
+.teams .team__nocontact{color:var(--grit-2)}
 
 @media (max-width:760px){
-  .team{grid-template-columns:1fr;gap:18px;padding:24px 0}
-  .team__logo{min-height:92px}
+  .teams .team{grid-template-columns:1fr;gap:18px;padding:24px 0}
+  .teams .team__logo{min-height:92px}
 }
 
 /* --------------------------------------------------------------- TBC --- */
@@ -728,3 +728,72 @@ a.ptile:hover{border-color:rgba(13,12,15,.34)}
   .pbar__row{gap:18px 30px}
   .pbar__item img{max-height:32px;max-width:140px}
 }
+
+/* a quieter aside inside a band, for context rather than pitch */
+.note{
+  margin:0;max-width:52ch;font-size:14.5px;line-height:1.6;
+  color:var(--grit-2);padding-left:16px;border-left:2px solid var(--yellow);
+}
+
+/* ==========================================================================
+   GENERATED CARD ARTWORK
+   Stands in for a photograph when a post has none. Built from the brand
+   rather than a grey box: tarmac ground, the hero's faint grid, the
+   headline set in the display face, and the logo's yellow and red rule.
+   Category tints the accent so a race report does not look like a partner
+   announcement at a glance.
+   ========================================================================== */
+
+.cardart{
+  display:flex;flex-direction:column;justify-content:flex-end;
+  width:100%;height:100%;position:relative;overflow:hidden;
+  background:
+    linear-gradient(158deg,rgba(255,212,0,.12),rgba(255,212,0,0) 58%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 46px),
+    var(--tarmac);
+  padding:22px 22px 20px;
+  --art-accent:var(--yellow);
+}
+.cardart[data-cat="Race report"]{--art-accent:var(--red)}
+.cardart[data-cat="Partners"]{--art-accent:var(--yellow)}
+.cardart[data-cat="Drivers"]{--art-accent:var(--cream)}
+
+.cardart__cat{
+  font-family:var(--data);font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--art-accent);
+  font-size:10px;margin-bottom:auto;
+}
+.cardart__title{
+  font-family:var(--display);font-weight:900;font-style:italic;
+  font-variation-settings:"wdth" 108;letter-spacing:-.025em;line-height:1.02;
+  color:var(--cream);margin-top:14px;
+  display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;
+  -webkit-line-clamp:4;
+  font-size:19px;
+}
+.cardart__rule{
+  display:block;height:3px;width:68px;margin-top:14px;flex:none;
+  background:linear-gradient(90deg,var(--yellow) 0 64%,transparent 64% 72%,var(--red) 72% 100%);
+}
+
+/* lead story on the news index */
+.cardart--lg{padding:32px 32px 30px}
+.cardart--lg .cardart__cat{font-size:11px}
+.cardart--lg .cardart__title{font-size:clamp(24px,3vw,34px);-webkit-line-clamp:4;margin-top:18px}
+.cardart--lg .cardart__rule{width:88px;height:4px}
+
+@media (max-width:560px){
+  .cardart__title{font-size:17px}
+}
+
+/* pre-season panel on a dark band */
+.tbc--dark{border-color:var(--tarmac-3);max-width:58ch}
+.tbc--dark .tbc__flag{color:var(--yellow)}
+.tbc--dark .tbc__h{color:var(--white)}
+.tbc--dark .tbc__p{color:#A8A89E}
+
+/* pre-season variant of the hero card: a call to action, not a dead scoreboard */
+.next--pre .next__top{margin-bottom:14px}
+.next--pre .next__top .eyebrow{color:var(--yellow)}
+.next__pre{color:#A8A89E;font-size:15px;margin:0 0 22px;padding-top:16px;border-top:1px solid var(--tarmac-3)}
+.next--pre .btn{clip-path:none}

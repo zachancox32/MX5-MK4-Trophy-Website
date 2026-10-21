@@ -5,6 +5,7 @@ ogTitle: "MX-5 Mk4 Trophy news"
 description: "Race reports, driver announcements, partner news and everything else from the MX-5 Mk4 Trophy paddock."
 permalink: /news/index.html
 ---
+{% import "card-art.njk" as art %}
 {# drafts are already excluded at build time by news.11tydata.js #}
 {% set live = collections.news | reverse %}
 
@@ -40,7 +41,7 @@ permalink: /news/index.html
           {% if lead.data.image %}
             <img src="{{ lead.data.image }}" alt="{{ lead.data.imageAlt | default('') }}">
           {% else %}
-            <span class="imgph"><span>Image</span></span>
+            {{ art.art(lead.data.title, lead.data.category, "lg") }}
           {% endif %}
         </div>
         <div class="lead__body">
@@ -60,7 +61,7 @@ permalink: /news/index.html
               {% if post.data.image %}
                 <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt | default('') }}" loading="lazy">
               {% else %}
-                <span class="imgph"><span>Image</span></span>
+                {{ art.art(post.data.title, post.data.category) }}
               {% endif %}
             </div>
             <p class="card__meta"><span class="card__cat">{{ post.data.category }}</span>

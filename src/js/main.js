@@ -116,6 +116,9 @@
     }
 
     /* ---------------------------------------------- standings sub-head */
+    // The standings heading is driven by standings.js now, not the calendar,
+    // because the two can legitimately disagree: the calendar is the
+    // SuperCup's, the standings are the Trophy's.
     var after = document.querySelector('[data-standings-after]');
     if (after) {
       after.textContent = completed

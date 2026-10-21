@@ -1,24 +1,24 @@
 ---
 layout: base.njk
 title: "MX-5 Mk4 Trophy | One make Mazda MX-5 racing with the BRSCC"
-description: "The MX-5 Mk4 Trophy runs with the BRSCC across seven UK circuits. Identical Mk4 Mazda MX-5s, sealed to the same spec, so the result comes down to the driver. Calendar, standings and how to get on the grid."
+description: "The MX-5 Mk4 Trophy runs with the BRSCC on UK circuits. Identical Mk4 Mazda MX-5s on Goodyear control slicks, sealed to the same spec. Calendar, standings and how to get a seat."
 ogTitle: "MX-5 Mk4 Trophy"
-ogDescription: "Seven rounds. One spec. Identical Mk4 Mazda MX-5s across seven UK circuits with the BRSCC."
+ogDescription: "Same car, same tyre. Identical Mk4 Mazda MX-5s on Goodyear control slicks, racing with the BRSCC."
 permalink: /index.html
 ---
 <!-- ============================================================ hero -->
   <section class="hero">
     <div class="shell hero__in">
       <div>
-        <p class="eyebrow">2026 season &middot; BRSCC club racing</p>
+        <p class="eyebrow">{{ season.year }} season &middot; BRSCC club racing</p>
         <h1>
-          <span>Seven rounds.</span>
-          <span class="accent">One spec.</span>
+          <span>Same car.</span>
+          <span class="accent">Same tyre.</span>
         </h1>
-        <p class="hero__lede">The MX-5 Mk4 Trophy runs with the BRSCC across seven UK circuits. Identical Mk4 Mazda MX-5s, sealed to the same spec, so the result comes down to the driver and nothing else.</p>
+        <p class="hero__lede">The MX-5 Mk4 Trophy runs with the BRSCC on UK circuits. Identical Mk4 Mazda MX-5s on identical Goodyear slicks, sealed to the same spec, so the result comes down to the driver.</p>
         <div class="hero__cta">
           <a class="btn btn--lg" href="#enquire">Get on the grid</a>
-          <a class="btn btn--lg btn--ghost" href="#calendar">See the 2026 calendar</a>
+          <a class="btn btn--lg btn--ghost" href="#calendar">See the {{ season.year }} calendar</a>
         </div>
         <p class="credential">
           <span>Racing with</span>
@@ -28,22 +28,33 @@ permalink: /index.html
         </p>
       </div>
 
-      <!-- filled in by js/main.js from the calendar below; this markup is the
-           fallback shown if JavaScript never runs -->
+      {% if season.rounds.length %}
+      {# js/main.js fills this in from the calendar below; the markup here
+         is the fallback shown if JavaScript never runs #}
       <div class="next" id="next-round" data-next-card>
         <div class="next__top">
           <p class="eyebrow" data-next-label>Next round</p>
           <span class="next__count" data-next-count hidden></span>
         </div>
-        <h2 class="next__ct" data-next-circuit>The 2026 season</h2>
-        <p class="next__date" data-next-date>Seven rounds, April to October</p>
+        <h2 class="next__ct" data-next-circuit>The {{ season.year }} season</h2>
+        <p class="next__date" data-next-date>{{ season.rounds.length }} rounds</p>
         <dl class="next__facts">
-          <div><dt>Races</dt><dd class="num">2</dd></div>
-          <div><dt>Entries</dt><dd class="num">[00]</dd></div>
-          <div><dt>Round</dt><dd class="num" data-next-index>7</dd></div>
+          <div><dt>Round</dt><dd class="num" data-next-index>{{ season.rounds.length }}</dd></div>
+          <div><dt>Of</dt><dd class="num">{{ season.rounds.length }}</dd></div>
         </dl>
         <a class="lnk" href="#calendar">Full calendar</a>
       </div>
+      {% else %}
+      <div class="next next--pre">
+        <div class="next__top">
+          <p class="eyebrow">Season one &middot; {{ season.year }}</p>
+        </div>
+        <h2 class="next__ct">Entries opening soon</h2>
+        <p class="next__date">Racing on the BRSCC SuperCup grid</p>
+        <p class="next__pre">The {{ season.year }} calendar follows the BRSCC MX-5 SuperCup dates. It goes up here the moment they are published.</p>
+        <a class="btn btn--block" href="#enquire">Register your interest</a>
+      </div>
+      {% endif %}
     </div>
   </section>
 
@@ -51,10 +62,10 @@ permalink: /index.html
   <div class="ticker" aria-hidden="true">
     <div class="ticker__track" data-ticker>
       <span>MX-5 Mk4 Trophy</span><span>&frasl;</span>
-      <span>Seven rounds, one spec</span><span>&frasl;</span>
+      <span>Same car, same tyre</span><span>&frasl;</span>
       <span>Racing with the BRSCC</span><span>&frasl;</span>
       <span>MX-5 Mk4 Trophy</span><span>&frasl;</span>
-      <span>Seven rounds, one spec</span><span>&frasl;</span>
+      <span>Same car, same tyre</span><span>&frasl;</span>
       <span>Racing with the BRSCC</span><span>&frasl;</span>
     </div>
   </div>
@@ -65,64 +76,30 @@ permalink: /index.html
       <div class="band__head reveal">
         <div>
           <p class="eyebrow">The season</p>
-          <h2>2026 calendar</h2>
+          <h2>{{ season.year }} calendar</h2>
         </div>
       </div>
 
-      <!-- Round dates follow the BRSCC Mazda MX-5 SuperCup 2026 calendar.
-           To update: edit the data-start / data-end attributes and the text.
-           The "next round" highlight and the hero card work these out on load. -->
+      {% if season.rounds.length %}
       <div class="cal reveal" data-calendar>
-        <div class="cal__row" data-round="1" data-start="2026-04-18" data-end="2026-04-19">
-          <span class="cal__no num">01</span>
-          <span class="cal__ct">Snetterton</span>
-          <span class="cal__loc">Norfolk</span>
-          <span class="cal__dt num">18 to 19 Apr</span>
-          <span class="pill" data-status>Results</span>
-        </div>
-        <div class="cal__row" data-round="2" data-start="2026-05-09" data-end="2026-05-09">
-          <span class="cal__no num">02</span>
-          <span class="cal__ct">Oulton Park</span>
-          <span class="cal__loc">Cheshire</span>
-          <span class="cal__dt num">9 May</span>
-          <span class="pill" data-status>Results</span>
-        </div>
-        <div class="cal__row" data-round="3" data-start="2026-06-06" data-end="2026-06-07">
-          <span class="cal__no num">03</span>
-          <span class="cal__ct">Donington Park</span>
-          <span class="cal__loc">Leicestershire</span>
-          <span class="cal__dt num">6 to 7 Jun</span>
-          <span class="pill" data-status>Results</span>
-        </div>
-        <div class="cal__row" data-round="4" data-start="2026-07-11" data-end="2026-07-12">
-          <span class="cal__no num">04</span>
-          <span class="cal__ct">Croft</span>
-          <span class="cal__loc">North Yorkshire</span>
-          <span class="cal__dt num">11 to 12 Jul</span>
-          <span class="pill" data-status>Results</span>
-        </div>
-        <div class="cal__row" data-round="5" data-start="2026-08-08" data-end="2026-08-09">
-          <span class="cal__no num">05</span>
-          <span class="cal__ct">Cadwell Park</span>
-          <span class="cal__loc">Lincolnshire</span>
-          <span class="cal__dt num">8 to 9 Aug</span>
-          <span class="pill" data-status>Results</span>
-        </div>
-        <div class="cal__row" data-round="6" data-start="2026-09-12" data-end="2026-09-13">
-          <span class="cal__no num">06</span>
-          <span class="cal__ct">Anglesey</span>
-          <span class="cal__loc">Isle of Anglesey</span>
-          <span class="cal__dt num">12 to 13 Sep</span>
+        {% for r in season.rounds %}
+        <div class="cal__row" data-round="{{ r.round }}" data-start="{{ r.start }}" data-end="{{ r.end }}"{% if loop.last %} data-finale{% endif %}>
+          <span class="cal__no num">{{ "0" if r.round < 10 }}{{ r.round }}</span>
+          <span class="cal__ct">{{ r.circuit }}</span>
+          <span class="cal__loc">{{ r.county }}</span>
+          <span class="cal__dt num">{{ r.start | dateUK }}</span>
           <span class="pill" data-status>Upcoming</span>
         </div>
-        <div class="cal__row" data-round="7" data-start="2026-10-10" data-end="2026-10-11" data-finale>
-          <span class="cal__no num">07</span>
-          <span class="cal__ct">Silverstone</span>
-          <span class="cal__loc">Northamptonshire</span>
-          <span class="cal__dt num">10 to 11 Oct</span>
-          <span class="pill" data-status>Finale</span>
-        </div>
+        {% endfor %}
       </div>
+      {% else %}
+      <div class="tbc reveal">
+        <p class="tbc__flag">To be confirmed</p>
+        <h3 class="tbc__h">The {{ season.year }} calendar is not published yet.</h3>
+        <p class="tbc__p">The Trophy runs on the BRSCC MX-5 SuperCup grid, so our dates follow theirs. As soon as the BRSCC publish the {{ season.year }} calendar it goes up here, with the countdown and round by round results running off it.</p>
+        <a class="btn btn--lg" href="#enquire">Register your interest</a>
+      </div>
+      {% endif %}
     </div>
   </section>
 
@@ -131,15 +108,16 @@ permalink: /index.html
     <div class="shell">
       <div class="band__head reveal">
         <div>
-          <p class="eyebrow" data-standings-after>Championship</p>
+          <p class="eyebrow">{% if standings.afterRound %}After {{ standings.afterRound }} of {{ standings.totalRounds }} rounds{% else %}{{ standings.season }} season{% endif %}</p>
           <h2>Championship standings</h2>
         </div>
+        {% if standings.drivers.length %}<a class="lnk" href="#calendar">The calendar</a>{% endif %}
       </div>
 
-      <!-- TODO: replace with real names, teams and points after each round -->
+      {% if standings.drivers.length %}
       <div class="tablewrap reveal">
         <table class="table">
-          <caption class="vh">Drivers championship, top five</caption>
+          <caption class="vh">Drivers championship</caption>
           <thead>
             <tr>
               <th scope="col">Pos</th><th scope="col">No</th><th scope="col">Driver</th>
@@ -148,15 +126,27 @@ permalink: /index.html
             </tr>
           </thead>
           <tbody>
-            <tr><td class="pos num">1</td><td class="car num">44</td><td class="nm">[Driver name]</td><td class="team">[Team]</td><td class="w num">4</td><td class="pts num">213</td></tr>
-            <tr><td class="pos num">2</td><td class="car num">7</td><td class="nm">[Driver name]</td><td class="team">[Team]</td><td class="w num">2</td><td class="pts num">198</td></tr>
-            <tr><td class="pos num">3</td><td class="car num">19</td><td class="nm">[Driver name]</td><td class="team">[Team]</td><td class="w num">2</td><td class="pts num">176</td></tr>
-            <tr><td class="pos num">4</td><td class="car num">3</td><td class="nm">[Driver name]</td><td class="team">[Team]</td><td class="w num">1</td><td class="pts num">154</td></tr>
-            <tr><td class="pos num">5</td><td class="car num">88</td><td class="nm">[Driver name]</td><td class="team">[Team]</td><td class="w num">1</td><td class="pts num">141</td></tr>
+            {% for d in standings.drivers %}
+            <tr>
+              <td class="pos num">{{ d.pos }}</td>
+              <td class="car num">{{ d.no }}</td>
+              <td class="nm">{{ d.name }}</td>
+              <td class="team">{{ d.team }}</td>
+              <td class="w num">{{ d.wins }}</td>
+              <td class="pts num">{{ d.points }}</td>
+            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
-      <p class="footnote">Placeholder standings. Names, teams and points to be filled in from the BRSCC results.</p>
+      {% else %}
+      <div class="tbc tbc--dark reveal">
+        <p class="tbc__flag">No results yet</p>
+        <h3 class="tbc__h">The first season runs in {{ standings.season }}.</h3>
+        <p class="tbc__p">Standings will appear here after round one and update after every round.</p>
+        <a class="btn btn--lg" href="#enquire">Get on the grid</a>
+      </div>
+      {% endif %}
     </div>
   </section>
 
@@ -167,17 +157,21 @@ permalink: /index.html
         <div>
           <p class="eyebrow" style="color:var(--red-ink);margin-bottom:9px">The car</p>
           <h2 style="font-size:clamp(27px,4.4vw,36px);margin-bottom:14px">One spec. Sealed. Scrutineered.</h2>
-          <p style="color:var(--grit-2);margin:0;max-width:46ch">Every car on the grid is a Mk4 Mazda MX-5 built to the same control specification. No development race, no budget arms race. What you bring is setup, tyre management and the ability to overtake.</p>
+          <p style="color:var(--grit-2);margin:0 0 16px;max-width:46ch">Every car in the Trophy is a Mk4 Mazda MX-5 built to the same control specification, on the same Goodyear hard compound slick. No development race, no budget arms race. What you bring is setup, tyre management and the ability to overtake.</p>
+          <p style="color:var(--grit-2);margin:0 0 16px;max-width:46ch">Slicks are controlled to six sets for the whole season. That caps what anyone can spend their way to, and it makes looking after a set part of the job rather than an afterthought. Qualifying on fresh rubber is a decision with a cost, not a default. A Goodyear wet is available as well, so a soaked weekend does not come out of your dry allocation.</p>
+          <p style="color:var(--grit-2);margin:0 0 16px;max-width:46ch">ABS, traction control and a ZF sequential gearbox are part of that specification. The car is modern rather than raw, so a missed downshift does not end your afternoon. That makes it a realistic first car for a driver straight out of an ARDS test, and still quick enough to be worth the time of someone who has raced for years.</p>
+          <p class="note">For 2027 the Trophy runs on the BRSCC MX-5 SuperCup grid, scored as its own championship. You share the track with the SuperCup Mk3 cars, but not the championship. Different car, different tyre, your own results and your own title. From 2028 the Trophy takes its own slot on the BRSCC roster.</p>
           <ul class="spec">
             <li><span class="k">Chassis</span><span class="v">Mazda MX-5 Mk4, ND</span></li>
-            <li><span class="k">Engine</span><span class="v">[Capacity], sealed</span></li>
-            <li><span class="k">Power</span><span class="v">[000] bhp</span></li>
-            <li><span class="k">Tyre</span><span class="v">Goodyear, [compound]</span></li>
-            <li><span class="k">Safety</span><span class="v">[Cage and seat spec]</span></li>
+            <li><span class="k">Engine</span><span class="v">Sealed</span></li>
+            <li><span class="k">Gearbox</span><span class="v">ZF sequential</span></li>
+            <li><span class="k">Driver aids</span><span class="v">ABS and traction control</span></li>
+            <li><span class="k">Tyres</span><span class="v">Goodyear hard compound slick and wet</span></li>
+            <li><span class="k">Allocation</span><span class="v">Six sets of slicks per season</span></li>
           </ul>
         </div>
-        <!-- TODO: swap for a real photo:
-             <img src="/assets/img/car-on-track.jpg" alt="An MX-5 Mk4 Trophy car on track" width="900" height="600"> -->
+        {# When a photo exists, replace the block below with:
+           <img src="/assets/img/car-on-track.jpg" alt="An MX-5 Mk4 Trophy car on track" width="900" height="600"> #}
         <div class="imgph car__media"><span>Photo<br>Mk4 MX-5, three quarter front, on track</span></div>
       </div>
     </div>
@@ -196,17 +190,17 @@ permalink: /index.html
         <div class="step">
           <span class="step__n">01</span>
           <h3>Get your licence</h3>
-          <p>An ARDS test and an MSUK National licence. One day at a circuit, and most people pass first time.</p>
+          <p>An ARDS test and an MSUK National licence. A day at a circuit, and you can book it before you have a car or a seat.</p>
         </div>
         <div class="step">
           <span class="step__n">02</span>
           <h3>Buy or hire a car</h3>
-          <p>Arrive and drive from [£0,000] a weekend, or buy a built car. <a href="/teams/">Teams are being confirmed</a>.</p>
+          <p>Arrive and drive for a weekend, or buy a car of your own. <a href="/teams/">Teams are being confirmed</a>, and they will give you a straight figure.</p>
         </div>
         <div class="step">
           <span class="step__n">03</span>
           <h3>Enter the season</h3>
-          <p>Full season entry or single rounds. We will walk you through the BRSCC paperwork.</p>
+          <p>We will walk you through the BRSCC entry paperwork and what the season asks of you.</p>
         </div>
       </div>
     </div>
@@ -229,12 +223,8 @@ permalink: /index.html
         <div>
           <p class="eyebrow" style="color:var(--yellow);margin-bottom:9px">Driver enquiry</p>
           <h2 style="font-size:clamp(27px,4.4vw,36px);margin-bottom:14px">Get on the grid.</h2>
-          <p style="color:#A8A89E;margin:0;max-width:46ch">Whether you already hold a licence or you have never sat in a race car, tell us where you are and we will be straight with you about what a season costs and what it takes.</p>
-          <ul class="packs">
-            <li><span class="pk">New to racing</span><span class="pd">We will point you at an ARDS test and a team who will run you for a test day first.</span></li>
-            <li><span class="pk">Licence held</span><span class="pd">Arrive and drive for a single round, or a full season entry.</span></li>
-            <li><span class="pk">Own car</span><span class="pd">We will check your build against the technical regulations before you commit.</span></li>
-          </ul>
+          <p style="color:#A8A89E;margin:0;max-width:46ch">Whether you already hold a licence or you have never sat in a race car, we will be straight with you about what a season costs and what it asks of you.</p>
+          <p style="color:#A8A89E;margin:18px 0 0;max-width:46ch">That might mean finding your first test day, a seat for a single round, or checking a car you already own against the regulations.</p>
         </div>
 
         <form class="form" name="driver-enquiry" method="POST" data-netlify="true" netlify-honeypot="company-website" action="/thanks/">
@@ -242,7 +232,7 @@ permalink: /index.html
           <p class="hp"><label>Leave this empty <input name="company-website" tabindex="-1" autocomplete="off"></label></p>
 
           <h3>Driver enquiry</h3>
-          <p class="form__note">We come back to everyone within [two working days].</p>
+          <p class="form__note">A person reads every enquiry and comes back to you.</p>
 
           <div class="row2">
             <label class="field"><span>Name</span><input type="text" name="name" autocomplete="name" required></label>
@@ -271,7 +261,7 @@ permalink: /index.html
       <div class="band__head reveal">
         <div>
           <p class="eyebrow">Series partners</p>
-          <h2>Who backs the Cup</h2>
+          <h2>Who backs the Trophy</h2>
         </div>
         <a class="lnk" href="#partner-enquiry">Partner with us</a>
       </div>
@@ -300,13 +290,8 @@ permalink: /index.html
         <div>
           <p class="eyebrow" style="color:var(--yellow);margin-bottom:9px">Partner with us</p>
           <h2 style="font-size:clamp(27px,4.4vw,36px);margin-bottom:14px">Put your brand on the grid.</h2>
-          <p style="color:#A8A89E;margin:0;max-width:46ch">Seven weekends, a paddock that trades with itself, and a grid that people stay to watch. Tell us what you want out of it and we will build the package around that rather than sell you a tier.</p>
-          <ul class="packs">
-            <li><span class="pk">Car livery</span><span class="pd">Your brand on [n] cars for the season, or a single car for one round.</span></li>
-            <li><span class="pk">Series rights</span><span class="pd">Title and presenting partner positions, including the championship name.</span></li>
-            <li><span class="pk">Race weekend</span><span class="pd">Paddock access, grid walks and hospitality for your clients at any round.</span></li>
-            <li><span class="pk">Digital</span><span class="pd">Coverage across the series channels, race reports and the season highlights.</span></li>
-          </ul>
+          <p style="color:#A8A89E;margin:0;max-width:46ch">A season of BRSCC race weekends, in front of a paddock that buys from itself. Tell us what you want out of it and we will build the package around that rather than sell you a tier.</p>
+          <p style="color:#A8A89E;margin:18px 0 0;max-width:46ch">Car livery, series rights, race weekend hospitality or digital coverage. Tell us which of those matters to you and we will come back with something costed.</p>
         </div>
 
         <form class="form" name="partner-enquiry" method="POST" data-netlify="true" netlify-honeypot="fax-number" action="/thanks/">
@@ -314,7 +299,7 @@ permalink: /index.html
           <p class="hp"><label>Leave this empty <input name="fax-number" tabindex="-1" autocomplete="off"></label></p>
 
           <h3>Partner enquiry</h3>
-          <p class="form__note">We come back to everyone within [two working days].</p>
+          <p class="form__note">A person reads every enquiry and comes back to you.</p>
 
           <div class="row2">
             <label class="field"><span>Name</span><input type="text" name="name" autocomplete="name" required></label>
@@ -342,6 +327,7 @@ permalink: /index.html
         </div>
         <a class="lnk" href="/news/">All news</a>
       </div>
+      {% import "card-art.njk" as art %}
       {% set latest = collections.news | reverse | limit(3) %}
       {% if latest.length %}
       <div class="cards reveal">
@@ -351,7 +337,7 @@ permalink: /index.html
             {% if post.data.image %}
               <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt | default('') }}" loading="lazy">
             {% else %}
-              <span class="imgph"><span>Image</span></span>
+              {{ art.art(post.data.title, post.data.category) }}
             {% endif %}
           </div>
           <p class="card__meta"><span class="card__cat">{{ post.data.category }}</span>

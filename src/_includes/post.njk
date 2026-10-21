@@ -11,6 +11,9 @@ layout: base.njk
     {% if excerpt %}<p class="post__standfirst">{{ excerpt }}</p>{% endif %}
   </div>
 
+  {# No generated artwork here: the headline is already the h1 directly
+     above, so repeating it reads as a mistake. An article with no photo
+     opens on its headline and standfirst, which is enough. #}
   {% if image %}
   <div class="shell">
     <img class="post__hero" src="{{ image }}" alt="{{ imageAlt | default('') }}" loading="eager">
