@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Publishing | Mazda MX-5 Mk4 Trophy</title>
+<title>Media area | Mazda MX-5 Mk4 Trophy</title>
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,7 +94,25 @@
   (function () {
     var done = false;
 
+    function tidyButtons() {
+      document
+        .querySelectorAll('.app-shell .container .inner button')
+        .forEach(function (btn) {
+          var text = (btn.textContent || '').trim();
+          // the token route is for developers, not the people publishing
+          if (/\bPAT\b/i.test(text)) {
+            btn.style.display = 'none';
+            return;
+          }
+          if (/^sign in with github$/i.test(text)) {
+            var label = btn.querySelector('.label') || btn;
+            if (label.textContent.trim() !== 'Sign in') label.textContent = 'Sign in';
+          }
+        });
+    }
+
     function brand() {
+      tidyButtons();
       if (done) return;
       var h1 = document.querySelector('.app-shell .container .inner h1');
       if (!h1 || !/sveltia/i.test(h1.textContent)) return;
@@ -103,7 +121,7 @@
 
       var sub = document.createElement('p');
       sub.className = 'trophy-sub';
-      sub.textContent = 'Publishing';
+      sub.textContent = 'Media area';
       h1.insertAdjacentElement('afterend', sub);
 
       var rule = document.createElement('span');
@@ -116,14 +134,13 @@
       document.body.appendChild(foot);
 
       done = true;
-      observer.disconnect();
     }
 
     var observer = new MutationObserver(brand);
     observer.observe(document.documentElement, { childList: true, subtree: true });
     document.addEventListener('DOMContentLoaded', brand);
-    // give up watching after 20s rather than observing forever
-    setTimeout(function () { observer.disconnect(); }, 20000);
+    // stop watching once the screen has settled, rather than observing forever
+    setTimeout(function () { observer.disconnect(); }, 30000);
   })();
 </script>
 </body>
