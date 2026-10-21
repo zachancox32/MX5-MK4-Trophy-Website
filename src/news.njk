@@ -1,0 +1,79 @@
+---
+layout: base.njk
+title: "News | MX-5 Mk4 Trophy"
+ogTitle: "MX-5 Mk4 Trophy news"
+description: "Race reports, driver announcements, partner news and everything else from the MX-5 Mk4 Trophy paddock."
+permalink: /news/index.html
+---
+{# drafts are already excluded at build time by news.11tydata.js #}
+{% set live = collections.news | reverse %}
+
+<section class="band band--dark newshead">
+  <div class="shell">
+    <p class="eyebrow">From the paddock</p>
+    <h1 class="newshead__h">News</h1>
+    <p class="newshead__count"><span data-result-count>{{ live.length }}</span> {% if live.length == 1 %}article{% else %}articles{% endif %}</p>
+
+    <div class="newsfilter">
+      <label class="newsfilter__search">
+        <span class="vh">Search news</span>
+        <input type="search" placeholder="Search news" data-news-search autocomplete="off">
+      </label>
+      <div class="newsfilter__cats" role="group" aria-label="Filter by category">
+        <button type="button" class="chip is-on" data-cat="all">All</button>
+        <button type="button" class="chip" data-cat="Race report">Race reports</button>
+        <button type="button" class="chip" data-cat="News">News</button>
+        <button type="button" class="chip" data-cat="Drivers">Drivers</button>
+        <button type="button" class="chip" data-cat="Partners">Partners</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    {% if live.length %}
+      {% set lead = live[0] %}
+      <a class="lead" href="{{ lead.url }}" data-post data-cat="{{ lead.data.category }}"
+         data-title="{{ lead.data.title }}" data-excerpt="{{ lead.data.excerpt }}">
+        <div class="lead__media">
+          {% if lead.data.image %}
+            <img src="{{ lead.data.image }}" alt="{{ lead.data.imageAlt | default('') }}">
+          {% else %}
+            <span class="imgph"><span>Image</span></span>
+          {% endif %}
+        </div>
+        <div class="lead__body">
+          <p class="card__meta"><span class="card__cat">{{ lead.data.category }}</span>
+            <time datetime="{{ lead.data.date | dateISO }}">{{ lead.data.date | dateUK }}</time></p>
+          <h2 class="lead__title">{{ lead.data.title }}</h2>
+          <p class="lead__excerpt">{{ lead.data.excerpt }}</p>
+          <span class="lnk">Read more</span>
+        </div>
+      </a>
+
+      <div class="cards" data-news-grid>
+        {% for post in live.slice(1) %}
+          <a class="card" href="{{ post.url }}" data-post data-cat="{{ post.data.category }}"
+             data-title="{{ post.data.title }}" data-excerpt="{{ post.data.excerpt }}">
+            <div class="card__media">
+              {% if post.data.image %}
+                <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt | default('') }}" loading="lazy">
+              {% else %}
+                <span class="imgph"><span>Image</span></span>
+              {% endif %}
+            </div>
+            <p class="card__meta"><span class="card__cat">{{ post.data.category }}</span>
+              <time datetime="{{ post.data.date | dateISO }}">{{ post.data.date | dateUK }}</time></p>
+            <h3 class="card__title">{{ post.data.title }}</h3>
+            <p class="card__excerpt">{{ post.data.excerpt }}</p>
+          </a>
+        {% endfor %}
+      </div>
+
+      <p class="newsempty" data-news-empty hidden>Nothing matches that. <button type="button" class="linkbtn" data-news-reset>Clear the filters</button></p>
+    {% else %}
+      <p class="newsempty">No articles yet. The first one will appear here.</p>
+    {% endif %}
+  </div>
+</section>

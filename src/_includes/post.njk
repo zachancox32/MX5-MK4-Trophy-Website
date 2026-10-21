@@ -1,0 +1,27 @@
+---
+layout: base.njk
+---
+<article class="post">
+  <div class="shell shell--narrow">
+    <p class="post__meta">
+      <span class="post__cat">{{ category }}</span>
+      <time datetime="{{ date | dateISO }}">{{ date | dateUK }}</time>
+    </p>
+    <h1 class="post__title">{{ title }}</h1>
+    {% if excerpt %}<p class="post__standfirst">{{ excerpt }}</p>{% endif %}
+  </div>
+
+  {% if image %}
+  <div class="shell">
+    <img class="post__hero" src="{{ image }}" alt="{{ imageAlt | default('') }}" loading="eager">
+  </div>
+  {% endif %}
+
+  <div class="shell shell--narrow">
+    <div class="prose">
+      {{ content | safe }}
+    </div>
+
+    <p class="post__back"><a class="lnk" href="/news/">All news</a></p>
+  </div>
+</article>

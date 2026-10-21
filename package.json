@@ -1,0 +1,14 @@
+{
+  "name": "mx5-mk4-trophy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MX-5 Mk4 Trophy championship site",
+  "scripts": {
+    "build": "rm -rf _site && eleventy",
+    "serve": "eleventy --serve --port=4600"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  },
+  "type": "module"
+}

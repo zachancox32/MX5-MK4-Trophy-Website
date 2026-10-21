@@ -1,0 +1,7 @@
+*.log
+.DS_Store
+.vscode/
+Thumbs.db
+_site/
+_staging/
+node_modules/

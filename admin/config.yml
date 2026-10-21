@@ -1,0 +1,72 @@
+backend:
+  name: github
+  repo: zachancox32/MX5-MK4-Trophy-Website
+  branch: main
+  # Sveltia needs a GitHub OAuth app to sign editors in. Set up the proxy
+  # (see README, "Editing content") and put its address here.
+  # base_url: https://your-oauth-proxy.netlify.app
+
+# Where uploaded images are written, and how the site refers to them.
+media_folder: src/assets/img
+public_folder: /assets/img
+
+publish_mode: simple
+
+collections:
+  - name: news
+    label: News
+    label_singular: Article
+    folder: src/news
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: [date, title, category]
+    summary: "{{title}}  ·  {{category}}  ·  {{date | date('DD/MM/YYYY')}}"
+    preview_path: "news/{{slug}}"
+    fields:
+      - { name: title, label: Headline, widget: string }
+      - name: category
+        label: Category
+        widget: select
+        default: News
+        options: [Race report, News, Drivers, Partners]
+      - { name: date, label: Date, widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - name: excerpt
+        label: Standfirst
+        widget: text
+        hint: One sentence. This is what shows on the news index and in link previews, so say what happened rather than that something happened.
+      - { name: image, label: Main image, widget: image, required: false }
+      - { name: imageAlt, label: Image description, widget: string, required: false, hint: "For screen readers and for when the image fails to load. Describe what is in the photo." }
+      - name: draft
+        label: Draft
+        widget: boolean
+        default: false
+        hint: Leave on while you are writing. A draft is not built, so it is genuinely not on the site.
+      - { name: body, label: Article, widget: markdown }
+
+  - name: teams
+    label: Teams
+    label_singular: Team
+    folder: src/teams
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: [order, name]
+    summary: "{{name}}  ·  {{base}}"
+    fields:
+      - { name: name, label: Team name, widget: string }
+      - { name: order, label: Running order, widget: number, value_type: int, default: 99, hint: "Lower numbers appear first on the teams page." }
+      - { name: base, label: Based at, widget: string, required: false, hint: "Town and county." }
+      - name: services
+        label: What they offer
+        widget: select
+        multiple: true
+        options: [Arrive and drive, Car sales, Race preparation, Driver coaching, Storage and transport]
+      - { name: blurb, label: Description, widget: text, required: false }
+      - { name: logo, label: Logo, widget: image, required: false }
+      - { name: website, label: Website, widget: string, required: false }
+      - { name: email, label: Email, widget: string, required: false }
+      - { name: phone, label: Phone, widget: string, required: false }
+      - name: draft
+        label: Hidden
+        widget: boolean
+        default: false
+        hint: Hides the team from the site without deleting the entry.

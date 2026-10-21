@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mx5cupgb",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["server.py"],
+      "port": 4600
+    }
+  ]
+}

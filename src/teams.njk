@@ -1,0 +1,76 @@
+---
+layout: base.njk
+title: "Teams | MX-5 Mk4 Trophy"
+ogTitle: "MX-5 Mk4 Trophy teams"
+description: "The teams running cars in the MX-5 Mk4 Trophy. Arrive and drive, car sales and race preparation, with contact details for each."
+permalink: /teams/index.html
+---
+{% set teams = collections.teams | sort(false, false, "data.order") %}
+
+<section class="band band--dark newshead">
+  <div class="shell">
+    <p class="eyebrow">Race with us</p>
+    <h1 class="newshead__h">Teams</h1>
+    <p class="teamsintro">The teams running cars in the championship. Most will put you in a car for a test day before you commit to anything, and all of them would rather have that conversation early than sell you a season you are not ready for.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    {% if teams.length %}
+    <div class="teams">
+      {% for team in teams %}
+      <article class="team">
+        <div class="team__logo">
+          {% if team.data.logo %}
+            <img src="{{ team.data.logo }}" alt="{{ team.data.name }}" loading="lazy">
+          {% else %}
+            <span class="team__mark">{{ team.data.name }}</span>
+          {% endif %}
+        </div>
+
+        <div class="team__body">
+          <h2 class="team__name">{{ team.data.name }}</h2>
+          {% if team.data.base %}<p class="team__base">{{ team.data.base }}</p>{% endif %}
+
+          {% if team.data.services.length %}
+          <ul class="team__tags">
+            {% for s in team.data.services %}<li>{{ s }}</li>{% endfor %}
+          </ul>
+          {% endif %}
+
+          {% if team.data.blurb %}<p class="team__blurb">{{ team.data.blurb }}</p>{% endif %}
+
+          <ul class="team__contact">
+            {% if team.data.website %}<li><a href="{{ team.data.website }}" rel="noopener">Website</a></li>{% endif %}
+            {% if team.data.email %}<li><a href="mailto:{{ team.data.email }}">{{ team.data.email }}</a></li>{% endif %}
+            {% if team.data.phone %}<li><a href="tel:{{ team.data.phone | replace(' ','') }}">{{ team.data.phone }}</a></li>{% endif %}
+            {% if not team.data.website and not team.data.email and not team.data.phone %}
+              <li class="team__nocontact">[Contact details to be added]</li>
+            {% endif %}
+          </ul>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="tbc">
+      <p class="tbc__flag">To be confirmed</p>
+      <h2 class="tbc__h">The team list is being finalised.</h2>
+      <p class="tbc__p">We are confirming which teams will run cars, and we would rather publish nothing than publish a list that changes a fortnight later. It will be here as soon as it is settled.</p>
+      <p class="tbc__p">In the meantime, tell us what you are looking for and we will put you in touch with the right people directly.</p>
+      <a class="btn btn--lg" href="/#enquire">Register your interest</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="cta">
+  <div class="shell cta__in">
+    <div>
+      <h2>Not sure which team suits you?</h2>
+      <p>Tell us your budget and how much seat time you have had, and we will point you at the two or three worth calling.</p>
+    </div>
+    <a class="btn btn--lg btn--ink" href="/#enquire">Ask us</a>
+  </div>
+</section>
