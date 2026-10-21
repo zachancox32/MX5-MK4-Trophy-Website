@@ -1,5 +1,6 @@
 ---
 title: "The Trophy joins the SuperCup grid for 2027, with its own slot from 2028"
+shortTitle: "Trophy joins the SuperCup grid for 2027"
 date: 2026-10-21
 category: News
 excerpt: "Two seasons, two steps. Shared grid first, standalone championship second, and the first one decides how fast the second arrives."

@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://www.mx5cupgb.co.uk/sitemap.xml

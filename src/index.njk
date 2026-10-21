@@ -1,21 +1,26 @@
 ---
 layout: base.njk
 title: "MX-5 Mk4 Trophy | One make Mazda MX-5 racing with the BRSCC"
-description: "The MX-5 Mk4 Trophy runs with the BRSCC on UK circuits. Identical Mk4 Mazda MX-5s on Goodyear control slicks, sealed to the same spec. Calendar, standings and how to get a seat."
+description: "One make Mk4 Mazda MX-5 racing with the BRSCC. One sealed spec, a Goodyear control tyre, six sets a season. First season 2027."
 ogTitle: "MX-5 Mk4 Trophy"
-ogDescription: "Same car, same tyre. Identical Mk4 Mazda MX-5s on Goodyear control slicks, racing with the BRSCC."
+ogDescription: "The next generation of MX-5 racing. Identical Mk4 Mazda MX-5s on Goodyear control slicks, racing with the BRSCC."
 permalink: /index.html
 ---
 <!-- ============================================================ hero -->
   <section class="hero">
     <div class="shell hero__in">
       <div>
-        <p class="eyebrow">{{ season.year }} season &middot; BRSCC club racing</p>
-        <h1>
-          <span>Same car.</span>
-          <span class="accent">Same tyre.</span>
+        <img class="hero__badge" src="/assets/brand/badge-light.png" alt=""
+             width="1104" height="1304" fetchpriority="high">
+        <div class="hero__kicker">
+          <span>{{ season.year }} season &middot; BRSCC club racing</span>
+        </div>
+        <h1 class="hero__display">
+          <span>Mazda <span class="nb">MX-5</span></span>
+          <span><span class="accent">Mk4</span> Trophy</span>
         </h1>
-        <p class="hero__lede">The MX-5 Mk4 Trophy runs with the BRSCC on UK circuits. Identical Mk4 Mazda MX-5s on identical Goodyear slicks, sealed to the same spec, so the result comes down to the driver.</p>
+        <p class="hero__slogan">The next generation of <span class="nb">MX-5</span> racing.</p>
+        <p class="hero__lede">One make racing with the BRSCC on UK circuits. Identical Mk4 Mazda MX-5s on identical Goodyear slicks, sealed to the same spec, so the result comes down to the driver.</p>
         <div class="hero__cta">
           <a class="btn btn--lg" href="#enquire">Get on the grid</a>
           <a class="btn btn--lg btn--ghost" href="#calendar">See the {{ season.year }} calendar</a>
@@ -62,10 +67,10 @@ permalink: /index.html
   <div class="ticker" aria-hidden="true">
     <div class="ticker__track" data-ticker>
       <span>MX-5 Mk4 Trophy</span><span>&frasl;</span>
-      <span>Same car, same tyre</span><span>&frasl;</span>
+      <span>The next generation of MX-5 racing</span><span>&frasl;</span>
       <span>Racing with the BRSCC</span><span>&frasl;</span>
       <span>MX-5 Mk4 Trophy</span><span>&frasl;</span>
-      <span>Same car, same tyre</span><span>&frasl;</span>
+      <span>The next generation of MX-5 racing</span><span>&frasl;</span>
       <span>Racing with the BRSCC</span><span>&frasl;</span>
     </div>
   </div>
@@ -202,6 +207,26 @@ permalink: /index.html
           <h3>Enter the season</h3>
           <p>We will walk you through the BRSCC entry paperwork and what the season asks of you.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= faq -->
+  <section class="band" id="faq">
+    <div class="shell">
+      <div class="band__head reveal">
+        <div>
+          <p class="eyebrow">Straight answers</p>
+          <h2>Common questions</h2>
+        </div>
+      </div>
+      <div class="faq reveal">
+        {% for item in faq %}
+        <div class="faq__item">
+          <h3 class="faq__q">{{ item.q }}</h3>
+          <p class="faq__a">{{ item.a }}</p>
+        </div>
+        {% endfor %}
       </div>
     </div>
   </section>

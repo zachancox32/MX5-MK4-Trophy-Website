@@ -1,0 +1,21 @@
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"NewsArticle",
+  "headline":{{ title | dump | safe }},
+  "description":{{ excerpt | default(description) | dump | safe }},
+  "datePublished":"{{ date | dateISO }}",
+  "dateModified":"{{ date | dateISO }}",
+  "articleSection":{{ category | default("News") | dump | safe }},
+  "inLanguage":"en-GB",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"{{ site.url }}{{ page.url }}"},
+  "image":"{{ site.url }}{{ image | default('/assets/brand/og-image.png') }}",
+  "publisher":{
+    "@type":"Organization",
+    "name":"MX-5 Mk4 Trophy",
+    "url":"{{ site.url }}/",
+    "logo":{"@type":"ImageObject","url":"{{ site.url }}/assets/brand/badge-light.png"}
+  },
+  "isPartOf":{"@type":"WebSite","@id":"{{ site.url }}/#site"}
+}
+</script>
