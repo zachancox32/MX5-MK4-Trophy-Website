@@ -420,7 +420,7 @@ h1,h2,h3,h4{
 }
 
 /* ------------------------------------------------------------ partners --- */
-.plogos{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.plogos{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 .ptile{
   background:var(--white);border:1px solid rgba(13,12,15,.12);
   display:flex;align-items:center;justify-content:center;
@@ -447,6 +447,7 @@ a.ptile:hover{border-color:rgba(13,12,15,.34)}
   font-size:13px;letter-spacing:.13em;text-transform:uppercase;
 }
 .ptile--open:hover{border-color:var(--yellow);background:rgba(255,212,0,.10)}
+@media (max-width:1100px){ .plogos{grid-template-columns:repeat(3,1fr)} }
 @media (max-width:820px){ .plogos{grid-template-columns:1fr 1fr} }
 
 .partner{display:grid;grid-template-columns:1.08fr .92fr;gap:44px;align-items:start}
