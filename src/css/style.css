@@ -833,17 +833,20 @@ a.ptile:hover{border-color:rgba(13,12,15,.34)}
 }
 .cardart--lg::after{right:-44px;bottom:-60px;width:220px;height:260px;opacity:.14}
 
-.tbc{position:relative;overflow:hidden}
+/* The badge sits wholly inside these panels. Bleeding it off the corner
+   gets clipped against the dashed border, and a hard cut across a dashed
+   edge reads as a broken image rather than a deliberate crop. */
+.tbc{position:relative;overflow:clip}
 .tbc::after{
-  content:"";position:absolute;right:-40px;bottom:-56px;
-  width:190px;height:225px;opacity:.07;pointer-events:none;
+  content:"";position:absolute;right:26px;bottom:24px;
+  width:116px;height:137px;opacity:.1;pointer-events:none;
   background:url("/assets/brand/badge-light.png") center/contain no-repeat;
 }
-.tbc--dark::after{opacity:.1}
+.tbc--dark::after{opacity:.13}
+@media (max-width:640px){ .tbc::after{right:16px;bottom:16px;width:84px;height:99px} }
 .tbc > *{position:relative;z-index:1}
 
 @media (max-width:640px){
-  .tbc::after{width:140px;height:166px;right:-34px;bottom:-44px}
   .cardart--lg::after{width:150px;height:178px}
 }
 
