@@ -4,7 +4,10 @@
   publish = "_site"
 
 [build.environment]
-  NODE_VERSION = "24"
+  # 22 is Netlify's current default LTS and is definitely present in their
+  # build image. 24 may not be, and an unresolvable version fails the build
+  # before it reaches the first command.
+  NODE_VERSION = "22"
 
 [[headers]]
   for = "/*"
