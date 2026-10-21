@@ -12,6 +12,36 @@
 
 <style>
   /* ----------------------------------------------------------------------
+     Theme the whole CMS through its own design tokens rather than by
+     overriding class names. Sveltia's internal classes carry build hashes
+     and can change on any update; these --sui-* variables are its public
+     theming surface, so this survives version bumps.
+     ---------------------------------------------------------------------- */
+  :root, .app-shell, .sui.app-shell{
+    /* yellow replaces the stock blue everywhere: buttons, links, focus
+       rings, selected rows */
+    --sui-primary-accent-color: #FFD400;
+    --sui-primary-accent-color-light: #FFDE33;
+    --sui-primary-accent-color-dark: #E6BF00;
+    --sui-primary-accent-color-text: #FFD400;
+    /* text sitting on the accent must be dark, since the accent is now light */
+    --sui-primary-accent-color-inverted: #0D0C0F;
+    --sui-primary-accent-color-translucent: rgba(255,212,0,.38);
+    /* the site's typeface, not the CMS's stock one */
+    --sui-font-family-default: "Barlow", system-ui, sans-serif;
+    --sui-control-font-family: "Barlow", system-ui, sans-serif;
+    --sui-textbox-font-family: "Barlow", system-ui, sans-serif;
+
+    /* square corners, as on the site */
+    --sui-button-medium-border-radius: 0;
+    --sui-button-small-border-radius: 0;
+    --sui-button-large-border-radius: 0;
+    --sui-control-medium-border-radius: 0;
+    --sui-control-small-border-radius: 0;
+    --sui-control-large-border-radius: 0;
+  }
+
+  /* ----------------------------------------------------------------------
      Branding for the Sveltia sign-in screen.
      Sveltia renders into the normal DOM with no shadow root, so its own
      styles can be overridden. The version is pinned in the script tag
@@ -56,25 +86,6 @@
     background:linear-gradient(90deg,var(--t-yellow) 0 68%,transparent 68% 74%,var(--t-red) 74% 100%);
   }
 
-  /* buttons in the site's language */
-  .app-shell .container .inner button.sui.button.primary{
-    background:var(--t-yellow) !important;color:#0D0C0F !important;
-    border-color:var(--t-yellow) !important;
-    font-family:"Barlow Semi Condensed",sans-serif !important;
-    font-weight:700 !important;font-size:14px !important;
-    letter-spacing:.13em !important;text-transform:uppercase !important;
-    border-radius:0 !important;min-height:50px !important;
-  }
-  .app-shell .container .inner button.sui.button.secondary{
-    background:transparent !important;color:var(--t-grit) !important;
-    border:1px solid var(--t-line) !important;border-radius:0 !important;
-    font-family:"Barlow Semi Condensed",sans-serif !important;
-    font-weight:600 !important;letter-spacing:.1em !important;
-    text-transform:uppercase !important;font-size:12.5px !important;
-  }
-  .app-shell .container .inner button.sui.button.secondary:hover{
-    color:var(--t-cream) !important;border-color:var(--t-grit) !important;
-  }
 
   .trophy-foot{
     position:fixed;left:0;right:0;bottom:22px;text-align:center;
