@@ -2,6 +2,7 @@
 [build]
   command = "npm run build"
   publish = "_site"
+  functions = "netlify/functions"
 
 [build.environment]
   # 22 is Netlify's current default LTS and is definitely present in their

@@ -45,12 +45,60 @@ _site/                  build output, not in git
 The CMS lives at `/admin`. It writes markdown into `src/news/` and
 `src/teams/`, commits to GitHub, and Netlify rebuilds.
 
-Two things to set up before it works:
+### Turning sign-in on, once
 
-1. **`admin/config.yml`**: set `repo:` to your GitHub owner/repo.
-2. **GitHub sign-in.** Sveltia authenticates editors through a GitHub
-   OAuth app. Create one, then point `base_url` in the config at an
-   OAuth proxy. Netlify Functions can host the proxy on the free tier.
+Sign-in runs through this site's own `/auth` and `/callback` functions
+(`netlify/functions/`). No third party holds your tokens. Two steps, both
+in accounts only you can reach:
+
+**1. Create a GitHub OAuth app.** GitHub → Settings → Developer settings →
+OAuth Apps → New OAuth App.
+
+- Homepage URL: your site, e.g. `https://mazda-mx5-trophy.netlify.app`
+- Authorization callback URL: that same address plus `/callback`
+
+Generate a client secret and keep the page open.
+
+**2. Put the two values into Netlify.** Site configuration → Environment
+variables → Add:
+
+- `GITHUB_CLIENT_ID`
+- `GITHUB_CLIENT_SECRET`
+
+Deploy. `/admin` will then sign people in.
+
+**Never put these in the repo.** The functions read them from the
+environment at runtime, which is why they are safe to deploy publicly.
+
+### Giving the team the ability to publish
+
+We use **one shared GitHub account** for publishing rather than an account
+each. Nobody on the team needs their own GitHub login, and because the
+repo only ever sees one contributor, it can stay private on Netlify's
+free plan.
+
+**Setting it up**
+
+1. Create a GitHub account for the championship, e.g.
+   `mx5mk4trophy-media`, on an address the team controls rather than any
+   one person's inbox.
+2. Add it to the repo as a collaborator with **Write** access.
+3. Use that account when creating the OAuth app above.
+4. Put the login in your password manager and share it with whoever
+   publishes.
+
+**What this costs you.** Git history will show every post as that one
+account, so there is no record of who wrote what, and if someone leaves
+you change the password rather than revoking one person. For a team of
+two or three publishing race reports that is usually a fair trade. If
+attribution starts to matter, switch to an account each and make the repo
+public, which lifts the contributor limit for nothing.
+
+**The sign-in screen** at `/admin` is branded in `admin/index.html`:
+the badge, the championship name and the site's colours, rather than the
+CMS's own. Sveltia renders into the normal DOM with no shadow root, so
+its styles can be overridden. The version is pinned in the script tag so
+a surprise update cannot shift the selectors underneath it.
 
 **Contributor limit.** Every CMS editor becomes a Git contributor, and
 Netlify's free plan allows one on a *private* repo. Either keep the repo

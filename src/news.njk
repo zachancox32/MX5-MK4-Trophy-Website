@@ -47,7 +47,7 @@ permalink: /news/index.html
         <div class="lead__body">
           <p class="card__meta"><span class="card__cat">{{ lead.data.category }}</span>
             <time datetime="{{ lead.data.date | dateISO }}">{{ lead.data.date | dateUK }}</time></p>
-          <h2 class="lead__title">{{ lead.data.title }}</h2>
+          <h2 class="lead__title">{{ lead.data.title | keepModel | safe }}</h2>
           <p class="lead__excerpt">{{ lead.data.excerpt }}</p>
           <span class="lnk">Read more</span>
         </div>
@@ -66,7 +66,7 @@ permalink: /news/index.html
             </div>
             <p class="card__meta"><span class="card__cat">{{ post.data.category }}</span>
               <time datetime="{{ post.data.date | dateISO }}">{{ post.data.date | dateUK }}</time></p>
-            <h3 class="card__title">{{ post.data.title }}</h3>
+            <h3 class="card__title">{{ post.data.title | keepModel | safe }}</h3>
             <p class="card__excerpt">{{ post.data.excerpt }}</p>
           </a>
         {% endfor %}

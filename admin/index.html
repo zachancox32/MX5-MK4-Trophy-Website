@@ -4,10 +4,127 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>MX-5 Mk4 Trophy, content</title>
+<title>Publishing | Mazda MX-5 Mk4 Trophy</title>
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap">
+
+<style>
+  /* ----------------------------------------------------------------------
+     Branding for the Sveltia sign-in screen.
+     Sveltia renders into the normal DOM with no shadow root, so its own
+     styles can be overridden. The version is pinned in the script tag
+     below, so these selectors cannot shift under us on a surprise update.
+     ---------------------------------------------------------------------- */
+  :root{
+    --t-tarmac:#0D0C0F; --t-raised:#17161A; --t-line:#26242A;
+    --t-yellow:#FFD400; --t-red:#E8253D; --t-cream:#F6F1E7; --t-grit:#A7A49A;
+  }
+  html,body{background:var(--t-tarmac)}
+
+  /* the sign-in panel only */
+  .app-shell .container .inner{
+    display:flex;flex-direction:column;align-items:center;
+    font-family:"Barlow",system-ui,sans-serif;
+  }
+
+  /* swap the Sveltia mark for the championship badge */
+  .app-shell .container .inner img.logo{
+    content:url("/assets/brand/badge-light.png");
+    width:auto !important;height:150px !important;border-radius:0 !important;
+    box-shadow:none !important;background:none !important;
+  }
+
+  /* the product name becomes ours, filled in by the script below */
+  .app-shell .container .inner h1{
+    font-family:"Archivo",sans-serif !important;
+    font-weight:900 !important;font-style:italic !important;
+    font-variation-settings:"wdth" 110 !important;
+    letter-spacing:-.025em !important;
+    font-size:30px !important;line-height:1.05 !important;
+    color:var(--t-cream) !important;
+    margin:22px 0 4px !important;text-align:center;
+  }
+  .trophy-sub{
+    font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;
+    font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--t-yellow);margin:0 0 30px;text-align:center;
+  }
+  .trophy-rule{
+    display:block;height:3px;width:86px;margin:0 auto 26px;
+    background:linear-gradient(90deg,var(--t-yellow) 0 68%,transparent 68% 74%,var(--t-red) 74% 100%);
+  }
+
+  /* buttons in the site's language */
+  .app-shell .container .inner button.sui.button.primary{
+    background:var(--t-yellow) !important;color:#0D0C0F !important;
+    border-color:var(--t-yellow) !important;
+    font-family:"Barlow Semi Condensed",sans-serif !important;
+    font-weight:700 !important;font-size:14px !important;
+    letter-spacing:.13em !important;text-transform:uppercase !important;
+    border-radius:0 !important;min-height:50px !important;
+  }
+  .app-shell .container .inner button.sui.button.secondary{
+    background:transparent !important;color:var(--t-grit) !important;
+    border:1px solid var(--t-line) !important;border-radius:0 !important;
+    font-family:"Barlow Semi Condensed",sans-serif !important;
+    font-weight:600 !important;letter-spacing:.1em !important;
+    text-transform:uppercase !important;font-size:12.5px !important;
+  }
+  .app-shell .container .inner button.sui.button.secondary:hover{
+    color:var(--t-cream) !important;border-color:var(--t-grit) !important;
+  }
+
+  .trophy-foot{
+    position:fixed;left:0;right:0;bottom:22px;text-align:center;
+    font-family:"Barlow Semi Condensed",sans-serif;font-size:11px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--t-grit);
+  }
+  .trophy-foot a{color:var(--t-grit);text-decoration:underline}
+  .trophy-foot a:hover{color:var(--t-yellow)}
+</style>
 </head>
 <body>
 <script src="https://unpkg.com/@sveltia/cms@0.111.0/dist/sveltia-cms.js" type="module"></script>
+
+<script>
+  // Sveltia hard-codes its own product name in the sign-in heading. Replace
+  // it once it appears, then stop watching. Everything else is CSS.
+  (function () {
+    var done = false;
+
+    function brand() {
+      if (done) return;
+      var h1 = document.querySelector('.app-shell .container .inner h1');
+      if (!h1 || !/sveltia/i.test(h1.textContent)) return;
+
+      h1.textContent = 'Mazda MX-5 Mk4 Trophy';
+
+      var sub = document.createElement('p');
+      sub.className = 'trophy-sub';
+      sub.textContent = 'Publishing';
+      h1.insertAdjacentElement('afterend', sub);
+
+      var rule = document.createElement('span');
+      rule.className = 'trophy-rule';
+      sub.insertAdjacentElement('afterend', rule);
+
+      var foot = document.createElement('p');
+      foot.className = 'trophy-foot';
+      foot.innerHTML = 'Mazda MX-5 Mk4 Trophy &middot; <a href="/">Back to the site</a>';
+      document.body.appendChild(foot);
+
+      done = true;
+      observer.disconnect();
+    }
+
+    var observer = new MutationObserver(brand);
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+    document.addEventListener('DOMContentLoaded', brand);
+    // give up watching after 20s rather than observing forever
+    setTimeout(function () { observer.disconnect(); }, 20000);
+  })();
+</script>
 </body>
 </html>

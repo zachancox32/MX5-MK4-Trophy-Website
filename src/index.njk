@@ -218,10 +218,10 @@ permalink: /index.html
       </div>
       <div class="faq reveal">
         {% for item in faq %}
-        <div class="faq__item">
-          <h3 class="faq__q">{{ item.q }}</h3>
+        <details class="faq__item">
+          <summary class="faq__q"><h3>{{ item.q }}</h3></summary>
           <p class="faq__a">{{ item.a }}</p>
-        </div>
+        </details>
         {% endfor %}
       </div>
     </div>
@@ -363,7 +363,7 @@ permalink: /index.html
           </div>
           <p class="card__meta"><span class="card__cat">{{ post.data.category }}</span>
             <time datetime="{{ post.data.date | dateISO }}">{{ post.data.date | dateUK }}</time></p>
-          <h3 class="card__title">{{ post.data.title }}</h3>
+          <h3 class="card__title">{{ post.data.title | keepModel | safe }}</h3>
           <p class="card__excerpt">{{ post.data.excerpt }}</p>
         </a>
         {% endfor %}

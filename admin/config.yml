@@ -2,9 +2,14 @@ backend:
   name: github
   repo: zachancox32/MX5-MK4-Trophy-Website
   branch: main
-  # Sveltia needs a GitHub OAuth app to sign editors in. Set up the proxy
-  # (see README, "Editing content") and put its address here.
-  # base_url: https://your-oauth-proxy.netlify.app
+  # Sign in runs through this site's own /auth and /callback functions.
+  # Change this to the live domain when the real one is pointed at Netlify.
+  base_url: https://mazda-mx5-trophy.netlify.app
+
+# shown on the sign-in screen and in the editor chrome
+site_url: https://mazda-mx5-trophy.netlify.app
+display_url: https://mazda-mx5-trophy.netlify.app
+logo_url: /assets/brand/badge-light.png
 
 # Where uploaded images are written, and how the site refers to them.
 media_folder: src/assets/img

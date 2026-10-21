@@ -7,7 +7,7 @@ layout: base.njk
       <span class="post__cat">{{ category }}</span>
       <time datetime="{{ date | dateISO }}">{{ date | dateUK }}</time>
     </p>
-    <h1 class="post__title">{{ title }}</h1>
+    <h1 class="post__title">{{ title | keepModel | safe }}</h1>
     {% if excerpt %}<p class="post__standfirst">{{ excerpt }}</p>{% endif %}
   </div>
 
